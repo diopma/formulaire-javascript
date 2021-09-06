@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="form.css">
+    </head>
+    <body>
+       <div class="contact-col">
+           <form action="javascript:sendmail()"  method="POST">
+               <input type ="text" name="Name" id="Name"  placeholder="Enter your surname" required="">
+               <input type ="text" name ="Surname" id="Surname" placeholder="Enter your name" required="">
+               <input type = "tel" name = "Tel" id="Tel" placeholder="Enter your number" required="">
+               <input type = "email" name = "Sender" id="Sender" placeholder="Enter your email" required="">
+               <textarea rows="8" name = "message" id="Message" placeholder="send message" required></textarea>
+               <button type="submit" class="btn">envoyer</button>
+            </form>
+       </div>
+      <!-------javascript----->s
+      <script
+          src="https://code.jquery.com/jquery-2.2.4.min.js"
+          integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+          crossorigin="anonymous">
+      </script>
+      <script src="https://smtpjs.com/v3/smtp.js"></script>
+      <script>
+          function sendmail(){
+              var name = $('#Name').val();
+              var surname = $('#Surname').val();
+              var tel = $('#Tel').val();
+              var email = $('#Sender').val();
+           var message = $('#Message').val();
+           
+           var Body='Name:'+name+'<br>Surname:'+surname+'<br>Email:'+email+'<br>Tel:'+tel+'<br>Message:'+message;
+           Email.send({
+        SecureToken:"fbf31702-bb7f-4a4e-9c1c-4ccf17ee777f",
+				To: 'papamadiopdiaw@gmail.com',
+				From: "aidaraestel21@gmail.com",
+				Subject: "New message on contact from "+name,
+				Body: Body
+			}).then(
+				message =>{
+					//console.log (message);
+					if(message=='OK'){
+					alert('Your mail has been send. Thank you for connecting.');
+					}
+					else{
+						console.error (message);
+						alert('There is error at sending message. ')
+						
+					}
+
+				}
+			);
+
+          }
+      </script>  
+     </script> 
+    </body>
+</html>
